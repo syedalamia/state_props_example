@@ -1,24 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import MyComponent from './MyComponent'
+
+import {useState} from 'react';
 
 function App() {
+
+const [myInfo, setState] = useState({
+  pagename: '',
+  phone: ''
+});
+
+//updating my setstate
+const clickingButton =(mitu,ritu)=> {
+  setState({
+    pagename:mitu,
+    phone:ritu
+  })
+  
+};
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <button onClick={()=>clickingButton('home','018')}>HOME</button>
+    <br></br>
+    <button onClick={()=>clickingButton('contact','019')}>CONTACT</button>
+
+  {
+    myInfo.pagename==='home' && <MyComponent pageName ={myInfo.pagename} calling={myInfo.phone}/>
+
+  }
+  {
+     myInfo.pagename==='contact' && <MyComponent pageName ={myInfo.pagename} calling={myInfo.phone}/>
+  }
+    </>
   );
 }
 
